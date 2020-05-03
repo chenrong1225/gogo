@@ -1,5 +1,5 @@
 
-/* 10-40 随机算法解释 小王出品
+/* 10-40 产生随机数解释 小王出品
 1. Math.random()  [0-1)
 2. (40-10)*Math.random() [0-30)
 3. (40-10+1)*Math.random() [0-30]
@@ -11,14 +11,15 @@
     }
 
     function randFace(){
-        return ["croen","，anchor","heart","spade","club","diamond"] [rand(0,5)];
+        return ["croen","anchor","heart","spade","club","diamond"] [rand(0,5)];
     }
     let allmoney=50;//全部的钱
-    let count;      //次数
+    let count=0;      //次数
 
+    let bets={ croen:0,anchor:0,heart:0,spade:0,club:0,diamond:0}
     while (allmoney>1&&allmoney<=100){
         count++;
-        let bets={ croen:0,anchor:0,heart:0,spade:0,club:0,diamond:0}
+
         let totalmoney=rand(1,allmoney);//本次随机试用的钱
         if (totalmoney===7){
             totalmoney=allmoney;
@@ -32,21 +33,21 @@
                 remaining=randFace()-bet;
             }while (remaining<1)
         }
+        allmoney-=totalmoney;
     }
-    allmoney-=totalmoney;
+
 
     const hand=[]; //创建
-    for (var x=0;x<3;x++){
+    for (let x=0;x<3;x++){
         hand.push(randFace());
     }
 
-    let winmoney;
+    let winmoney=0;
     for (let die=0;die<hand.length;die++){
         let face1=hand[die];
         if (bets[face1]>0){
-            winmoney=winmoney+bets[face];
+            winmoney+=bets[face1];
         }
         allmoney+=winmoney;
-}
+    }
 
-    console.log(allmoney);
