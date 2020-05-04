@@ -13,5 +13,5 @@
     }
 
     for (let aa in ll){
-        console.log(aa+"抽到"+ll[aa]);
+        //console.log(aa+"抽到"+ll[aa]);
     }
